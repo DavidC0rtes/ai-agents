@@ -1,5 +1,5 @@
 const CleanerProblem = require('./CleanerProblem');
-const CleanerAgent = require('./CleanerAgent');
+const CleanerAgent = require('./CleanerModelAgent');
 
 let myProblem = new CleanerProblem({ maxIterations: 12 });
 

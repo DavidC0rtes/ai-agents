@@ -1,27 +1,18 @@
 const CleanerProblem = require('./CleanerProblem');
 const CleanerAgent = require('./CleanerModelAgent');
 
-let myProblem = new CleanerProblem({ maxIterations: 100 });
+let myProblem = new CleanerProblem({ maxIterations: 12 });
 
-myProblem.addAgent("Smith", CleanerAgent, { x: 1, y: 7 });
+myProblem.addAgent("Smith", CleanerAgent, { x: 0, y: 2 });
 myProblem.solve([
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 1, 0, 1, 1, 1],
-    [1, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 1, 0, 1, 0, 1],
-    [1, 0, 0, 1, 0, 1, 0, 1],
-    [1, 1, 0, 1, 0, 1, -1, 1],
-    [1, 0, 0, 1, 0, 0, 0, 1],
-    [1, 0, 1, 1, 0, 1, 0, 1],
-    [1, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 0, 0, 1, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1]
-], {
+    [0, 0, 0, 0],
+    [0, 1, 1, -1],
+    [0, 1, 0, 0],
+    [0, 0, 0, 1]], {
     onFinish: (result) => {
         let agentID = result.actions[result.actions.length - 1].agentID;
         console.log("agent: " + agentID);
-        console.log(result.actions);
+        //console.log(result.actions);
         let world = JSON.parse(JSON.stringify(result.data.world));
         let agentState = result.data.states[agentID];
         world[agentState.y][agentState.x] = "X"
@@ -38,5 +29,9 @@ myProblem.solve([
         else
             console.log("Agent could solve this problem :)")
     },
-    onTurn: (result) => { console.log("Turn: " + JSON.stringify(result.actions[result.actions.length - 1])) }
+    onTurn: (result) => { 
+        //console.log(result.actions);
+        console.log("Turn: " + JSON.stringify(result.actions[result.actions.length - 1]))
+
+    }
 });
